@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\image;
 use DB;
 
+// hii this is my code 
 class adminController extends Controller
 {
     public function list() {
