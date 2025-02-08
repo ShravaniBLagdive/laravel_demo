@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
-use App\Models\image;
+// use App\Models\image;
 use DB;
 
 // hii this is my code 
@@ -59,40 +59,16 @@ class adminController extends Controller
         }
     }
 
-
-
-    public function uploadImage(Request $request){
-        $validator = Validator::make($request->all(),[
-            'image' => 'required|mimes:png,jpg,jpeg,gif'
-        ]);
+    public function upload(Request $request){
+        $path=$request->file('file')->store('public');
+        // $path->store('');
+        return $path;
         
-        if ($validator->fails()) {
-            return response()->json([
-                'status'=>false, 
-                'message' => 'Fix the error',
-                'errors' => $validator->errors
-            ]);
-        }
-
-        $img = $request->image;
-        $ext = $img->getClientOriginalExtension();
-        $imageName = time().'.'.$ext;
-        // move()
-        // 1st parameter---> where to upload
-        // 2nd parameter--->imagename
-        $img->move(public_path().'/uploads', $imageName);
-        
-        // store image in db
-        $image = new Image;
-        $image->image = $imageName;
-        $image->save();
-
-        return response()->json([
-            'status'=>true, 
-            'message' => 'image uploaded successfully',
-            'path' => asset('uploads/'.$imageName),
-            'data' => $image
-        ]);
+        // if($request->file('file') == null){
+        //     $file="";
+        // }else{
+        //     $file= $request->file('file')->store('image');
+        // }
     }
 }
  

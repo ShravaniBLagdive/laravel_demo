@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // imp for validator
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\adminController;
 
 
@@ -24,4 +24,5 @@ Route::put('update-admin', [adminController::class,'updateAdmin']);
 
 Route::delete('delete-admin/{id}', [adminController::class,'deleteAdmin']);
 
-Route::post('upload-image', [adminController::class,'uploadImage']);
+Route::view('upload', 'upload');
+Route::post('upload', [adminController::class, 'upload']);

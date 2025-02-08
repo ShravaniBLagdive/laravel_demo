@@ -7,5 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('upload', [UploadController::class,'upload']);
-// Route::post('upload','upload');
+Route::view('upload', 'upload');
+Route::post('upload',[UploadController::class,'upload']);
